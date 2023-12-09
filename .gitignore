@@ -397,3 +397,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /BudgetPlanner/WebApi/tempkey.jwk
+BudgetManager/BudgetManager/BudgetManager.Android/Resources/Resource.designer.cs
