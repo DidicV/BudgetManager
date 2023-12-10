@@ -1,13 +1,21 @@
-﻿using BudgetManager.Services;
-using BudgetManager.Views;
+﻿using BudgetManager.Repository;
+using BudgetManager.Services;
+using SQLite;
 using System;
+using System.IO;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace BudgetManager
 {
     public partial class App : Application
     {
+        private static readonly string dbPath = Path.Combine(Environment.GetFolderPath(
+                                                             Environment.SpecialFolder.LocalApplicationData),
+                                                             "budgetmanager.db");
+
+        private static readonly SQLiteAsyncConnection database = new AppDatabase(dbPath).GetConnection();
+
+        public static CategoryRepository _customerRepository = new CategoryRepository(database);
 
         public App()
         {
