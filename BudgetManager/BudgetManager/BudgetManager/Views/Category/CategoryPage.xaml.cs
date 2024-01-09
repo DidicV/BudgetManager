@@ -17,7 +17,7 @@ namespace BudgetManager.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            myCollectionView.ItemsSource = await App._customerRepository.GetCategories();
+            myCollectionView.ItemsSource = await App._categoryRepository.GetCategories();
         }
 
         private async void GoToAddOrEditCategory(object sender, EventArgs e)
@@ -36,17 +36,28 @@ namespace BudgetManager.Views
         {
             var item = sender as SwipeItem;
             var category = item.CommandParameter as Category;
-            var result = await DisplayAlert("Delete", $"Delete {category.Name}", "Yes", "No");
-            if (result)
+
+            var isPresentCategory = await App._transactionRepository.CheckCategoryId(category.Id);
+
+            if (isPresentCategory)
             {
-                await App._customerRepository.DeleteCategory(category);
-                myCollectionView.ItemsSource = await App._customerRepository.GetCategories();
+                await DisplayAlert("Delete", $"Category {category.Name} is present in transaction table and cannot be deleted", "Ok");
+            }
+            else
+            {
+                var result = await DisplayAlert("Delete", $"Delete '{category.Name}' ?", "Yes", "No");
+
+                if (result)
+                {
+                    await App._categoryRepository.DeleteCategory(category);
+                    myCollectionView.ItemsSource = await App._categoryRepository.GetCategories();
+                }
             }
         }
 
         private async void SeachBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            myCollectionView.ItemsSource = await App._customerRepository.Seach(e.NewTextValue);
+            myCollectionView.ItemsSource = await App._categoryRepository.Seach(e.NewTextValue);
         }
     }
 }

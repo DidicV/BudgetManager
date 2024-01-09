@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:BudgetManager.Models"
+             x:Class="BudgetManager.Views.Transaction.FilterPopupPage">
+    <StackLayout Padding="20">
+        <Label Text="Amount Range:" />
+        <StackLayout Orientation="Horizontal">
+            <Entry Placeholder="Min Amount" x:Name="minAmountEntry" Keyboard="Numeric" />
+            <Entry Placeholder="Max Amount" x:Name="maxAmountEntry" Keyboard="Numeric" />
+        </StackLayout>
+
+        <Label Text="Payment method"/>
+        <Picker x:Name="paymentMethodPicker" Title="Select a Payment Method">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type local:PaymentMethod}">
+                    <local:PaymentMethod Name="Loading..." />
+                </x:Array>
+            </Picker.ItemsSource>
+            <Picker.ItemDisplayBinding>
+                <Binding Path="Name" />
+            </Picker.ItemDisplayBinding>
+        </Picker>
+
+        <Label Text="Category"/>
+        <Picker x:Name="categoryPicker" Title="Select a Category">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type local:Category}">
+                    <local:Category Name="Loading..." />
+                </x:Array>
+            </Picker.ItemsSource>
+            <Picker.ItemDisplayBinding>
+                <Binding Path="Name" />
+            </Picker.ItemDisplayBinding>
+        </Picker>
+
+        <Label Text="Transaction type"/>
+        <Picker x:Name="transactionTypePicker" Title="Select a Transaction Type">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type local:TransactionType}">
+                    <local:TransactionType Name="Loading..." />
+                </x:Array>
+            </Picker.ItemsSource>
+            <Picker.ItemDisplayBinding>
+                <Binding Path="Name" />
+            </Picker.ItemDisplayBinding>
+        </Picker>
+
+        <Label Text="Datetime Range:" />
+        <StackLayout Orientation="Horizontal">
+            <DatePicker x:Name="startDatePicker" Format="dd/MM/yyyy"/>
+            <DatePicker x:Name="endDatePicker" Format="dd/MM/yyyy"/>
+        </StackLayout>
+
+        
+        <Button Text="Apply" Clicked="ApplyFiltersAndClosePopup" />
+        <Button Text="Clear all" Clicked="ClearAllEntries" />
+        <Button Text="Close" Clicked="ClosePopup" />
+    </StackLayout>
+</ContentPage>

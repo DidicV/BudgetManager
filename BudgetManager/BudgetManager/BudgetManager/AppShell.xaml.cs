@@ -1,7 +1,4 @@
-﻿using BudgetManager.ViewModels;
-using BudgetManager.Views;
-using System;
-using System.Collections.Generic;
+﻿using BudgetManager.Views;
 using Xamarin.Forms;
 
 namespace BudgetManager
@@ -13,11 +10,6 @@ namespace BudgetManager
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-        }
-
-        private async void OnMenuItemClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("//LoginPage");
         }
     }
 }

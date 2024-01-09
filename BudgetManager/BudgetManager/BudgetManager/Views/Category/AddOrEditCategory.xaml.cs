@@ -45,7 +45,7 @@ namespace BudgetManager.Views
 
         private async void AddCategory()
         {
-            await App._customerRepository.AddCategory(
+            await App._categoryRepository.AddCategory(
                 new Category
                 {
                     Name = nameEntry.Text,
@@ -56,7 +56,7 @@ namespace BudgetManager.Views
         private async void EditCategory()
         {
             _category.Name = nameEntry.Text;
-            await App._customerRepository.UpdateCategory(_category);
+            await App._categoryRepository.UpdateCategory(_category);
             await Navigation.PopAsync();
         }
     }

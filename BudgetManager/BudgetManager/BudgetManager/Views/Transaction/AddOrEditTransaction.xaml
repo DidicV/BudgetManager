@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:BudgetManager.Models"
+             x:Class="BudgetManager.Views.AddOrEditTransaction">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20">
+
+                <Label Text="Amount"/>
+                <Entry x:Name="numericEntry" 
+                   Keyboard="Numeric" 
+                   Placeholder="Enter a number"/>
+
+                <Label Text="Transaction date"/>
+                <DatePicker x:Name="date" Format="dd/MM/yyyy"/>
+
+                <Label Text="Description"/>
+                <Entry x:Name="descriptionEntry"/>
+
+                <Label Text="Payment method"/>
+                <Picker x:Name="paymentMethodPicker" Title="Select a Payment Method">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type local:PaymentMethod}">
+                            <local:PaymentMethod Name="Loading..." />
+                        </x:Array>
+                    </Picker.ItemsSource>
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="Name" />
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+
+                <Label Text="Category"/>
+                <Picker x:Name="categoryPicker" Title="Select a Category">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type local:Category}">
+                            <local:Category Name="Loading..." />
+                        </x:Array>
+                    </Picker.ItemsSource>
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="Name" />
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+
+                <Label Text="Transaction type"/>
+                <Picker x:Name="transactionTypePicker" Title="Select a Transaction Type">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type local:TransactionType}">
+                            <local:TransactionType Name="Loading..." />
+                        </x:Array>
+                    </Picker.ItemsSource>
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="Name" />
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+
+                <Button Text="Submit" Clicked="AddOrEdit" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

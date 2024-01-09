@@ -37,7 +37,7 @@ namespace BudgetManager.Repository
         public Task<List<Category>> Seach(string filter)
         {
             return _connection.Table<Category>()
-                              .Where(e => e.Name.Contains(filter))
+                              .Where(e => e.Name.ToLower().Contains(filter))
                               .ToListAsync();
         }
     }

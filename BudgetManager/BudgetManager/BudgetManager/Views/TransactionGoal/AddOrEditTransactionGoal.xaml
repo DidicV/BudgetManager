@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BudgetManager.Models"
+             x:Class="BudgetManager.Views.AddOrEditTransactionGoal">
+
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+
+            <Label Text="Goals"/>
+            <Picker x:Name="goalPicker" Title="Select a goal">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type local:Goal}">
+                        <local:Goal Name="Loading..." />
+                    </x:Array>
+                </Picker.ItemsSource>
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="Name" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+
+            <Label Text="Transactions"/>
+            <Picker x:Name="transactionPicker" Title="Select a Transaction">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type local:Transaction}">
+                        <local:Transaction Description="Loading..." />
+                    </x:Array>
+                </Picker.ItemsSource>
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="Amount" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+            <Button Text="Submit" Clicked="AddOrEdit" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
