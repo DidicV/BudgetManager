@@ -1,5 +1,4 @@
 ﻿using BudgetManager.Repository;
-using BudgetManager.Services;
 using SQLite;
 using System;
 using System.IO;
@@ -26,7 +25,6 @@ namespace BudgetManager
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

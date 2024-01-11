@@ -82,8 +82,4 @@
         <ShellContent Route="TransactionGoalPage" ContentTemplate="{DataTemplate local:TransactionGoalPage}" />
     </FlyoutItem>
 
-    <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </TabBar>
-
 </Shell>

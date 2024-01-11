@@ -1,5 +1,4 @@
 ﻿using BudgetManager.Helpers;
-using BudgetManager.Models;
 using Microcharts;
 using SkiaSharp;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ namespace BudgetManager.ViewModels
 
         public AboutViewModel(int year)
         {
-            Title = "About";
+            Title = "Reports";
             Year = year;
             InitData();
         }
@@ -126,18 +125,18 @@ namespace BudgetManager.ViewModels
                 "#6699ff",
                 "#ff6666",
                 "#99cc99",
-                "#cc99ff" 
+                "#cc99ff"
             };
 
             var transactionTypesList = await App._transactionTypeRepository.GetTransactionTypes();
 
-            var tramsactionTypes = transactionTypesList.Select(t=>t.Name).ToList();
+            var tramsactionTypes = transactionTypesList.Select(t => t.Name).ToList();
 
             tramsactionTypes.Remove("Incomes");
             tramsactionTypes.Remove("Expenses");
 
 
-            for(int j = 0; j < tramsactionTypes.Count; j++)
+            for (int j = 0; j < tramsactionTypes.Count; j++)
             {
                 var result = await App._transactionRepository.GetTransactionsSummary(Year, tramsactionTypes[j]);
                 var monthsSum = result.Select(t => (float)t.Sum);
